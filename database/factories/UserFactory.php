@@ -21,11 +21,13 @@ class UserFactory extends Factory
      *
      * @return array<string, mixed>
      */
+    protected $user_types = ['employee', 'employer'];
     public function definition(): array
     {
         return [
             'name' => fake()->name(),
             'email' => fake()->unique()->safeEmail(),
+            'user_type' => $this->user_types[rand(0, 1)],
             'email_verified_at' => now(),
             'password' => static::$password ??= Hash::make('password'),
             'remember_token' => Str::random(10),
