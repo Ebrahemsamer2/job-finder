@@ -24,11 +24,11 @@ class JobFactory extends Factory
         return [
             'title' => fake()->sentence(),
             'short_description' => fake()->paragraph(),
-            'job_type' => $this->job_types[rand(0, 3)],
+            'job_type' => $this->job_types[rand(0, count($this->job_types) - 1)],
             'country' => 'Egypt',
             'city' => 'Alexandria',
             'open_positions' => 3,
-            'experience_needed' =>  $this->experience_needed[rand(0, 4)],
+            'experience_needed' =>  $this->experience_needed[rand(0, count($this->experience_needed) - 1)],
             'salary_range_from' => 2000,
             'salary_range_to' => 4000,
             'job_description' => fake()->paragraph() . ';' . fake()->paragraph() . ';' . fake()->paragraph(),
