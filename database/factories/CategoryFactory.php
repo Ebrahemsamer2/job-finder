@@ -22,7 +22,9 @@ class CategoryFactory extends Factory
         'Content Writer',
         'Real Estate',
         'Information Technology',
-        'Construction'
+        'Construction',
+        'Front End',
+        'Back End'
     ];
 
     public static $counter = 0;
