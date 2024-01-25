@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Factories\Factory;
  */
 
  use App\Models\User;
+ use App\Models\Category;
 
 class JobFactory extends Factory
 {
@@ -35,6 +36,7 @@ class JobFactory extends Factory
             'job_requirements' => fake()->sentence() . ';' . fake()->sentence() . ';' . fake()->sentence(),
             'skills' => fake()->name() . ';' . fake()->name() . ';' . fake()->name() . ';' . fake()->name() . ';' . fake()->name(),
             'user_id' => User::where('user_type', 'employer')->inRandomOrder()->get()[0]->id,
+            'category_id' => Category::inRandomOrder()->get()[0]->id,
         ];
     }
 }

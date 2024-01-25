@@ -5,6 +5,7 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 use App\Models\User;
+use App\Models\Category;
 
 return new class extends Migration
 {
@@ -27,6 +28,7 @@ return new class extends Migration
             $table->text('job_description');
             $table->text('job_requirements');
             $table->text('skills');
+            $table->foreignIdFor(Category::class);
             $table->foreignIdFor(User::class);
             
             $table->timestamps();
