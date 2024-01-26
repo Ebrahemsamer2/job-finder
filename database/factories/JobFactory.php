@@ -23,7 +23,7 @@ class JobFactory extends Factory
     public function definition(): array
     {
         return [
-            'title' => fake()->sentence(),
+            'title' => fake()->name() . ' ' . fake()->name(),
             'short_description' => fake()->paragraph(),
             'job_type' => $this->job_types[rand(0, count($this->job_types) - 1)],
             'country' => 'Egypt',

@@ -9,8 +9,19 @@ class Job extends Model
 {
     use HasFactory;
 
+    public static function featuredJobs(int $limit)
+    {
+        return self::latest()->take($limit)->get();
+    }
+
+    // Relations
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+    }
+
     public function category()
     {
-        $this->belongsTo(Category::class);
+        return $this->belongsTo(Category::class);
     }
 }
