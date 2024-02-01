@@ -297,44 +297,27 @@
                 </div>
             </div>
             <div class="row">
+                @foreach($latest_posts as $post)
                 <div class="col-xl-6 col-lg-6 col-md-6">
                     <div class="home-blog-single mb-30">
                         <div class="blog-img-cap">
                             <div class="blog-img">
-                                <img src="assets/img/blog/home-blog1.jpg" alt="">
+                                <img src="{{ $post->thumbnail }}" alt="{{ $post->title }}">
                                 <!-- Blog date -->
                                 <div class="blog-date text-center">
-                                    <span>24</span>
-                                    <p>Now</p>
+                                    <span>{{ $post->created_at->format('d M') }}</span>
+                                    <p>{{ $post->created_at->diffForHumans(['parts' => 1]) }}</p>
                                 </div>
                             </div>
                             <div class="blog-cap">
-                                <p>|   Properties</p>
-                                <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
+                                <p>| <a href="#" class="text-secondary">{{ $post->blogCategory->name }}</a></p>
+                                <h3><a href="single-blog.html">{{ $post->title }}</a></h3>
                                 <a href="#" class="more-btn">Read more »</a>
                             </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-xl-6 col-lg-6 col-md-6">
-                    <div class="home-blog-single mb-30">
-                        <div class="blog-img-cap">
-                            <div class="blog-img">
-                                <img src="assets/img/blog/home-blog2.jpg" alt="">
-                                <!-- Blog date -->
-                                <div class="blog-date text-center">
-                                    <span>24</span>
-                                    <p>Now</p>
-                                </div>
-                            </div>
-                            <div class="blog-cap">
-                                <p>|   Properties</p>
-                                <h3><a href="single-blog.html">Footprints in Time is perfect House in Kurashiki</a></h3>
-                                <a href="#" class="more-btn">Read more »</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                @endforeach
             </div>
         </div>
     </div>
