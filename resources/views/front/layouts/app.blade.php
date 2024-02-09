@@ -69,12 +69,14 @@
                                             <li><a href="contact.html">Contact</a></li>
                                         </ul>
                                     </nav>
-                                </div>          
+                                </div>      
+                                @guest    
                                 <!-- Header-btn -->
                                 <div class="header-btn d-none f-right d-lg-block">
-                                    <a href="#" class="btn head-btn1">Register</a>
-                                    <a href="#" class="btn head-btn2">Login</a>
+                                    <a href="{{ route('register') }}" class="btn head-btn1">Register</a>
+                                    <a href="{{ route('login') }}" class="btn head-btn2">Login</a>
                                 </div>
+                                @endguest
                             </div>
                         </div>
                         <!-- Mobile Menu -->
