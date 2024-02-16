@@ -16,6 +16,18 @@
             <x-input-error :messages="$errors->get('email')" class="mt-2" />
         </div>
 
+        <!-- User Type -->
+        <div class="mt-4">
+            <x-input-label for="user_type" :value="__('User Type')" />
+            <x-select name="user_type" id="user_type">
+                @slot('options')
+                <option selected value="employee">employee</option>
+                <option value="employer">employer</option>
+                @endslot
+            </x-select>
+            <x-input-error :messages="$errors->get('user_type')" class="mt-2" />
+        </div>
+
         <!-- Password -->
         <div class="mt-4">
             <x-input-label for="password" :value="__('Password')" />
