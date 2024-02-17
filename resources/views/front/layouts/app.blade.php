@@ -3,7 +3,7 @@
     <head>
         <meta charset="utf-8">
         <meta http-equiv="x-ua-compatible" content="ie=edge">
-         <title>Job board HTML-5 Template </title>
+         <title>{{ config("app.name", 'Laravel') }}</title>
         <meta name="description" content="">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="manifest" href="site.webmanifest">
@@ -22,6 +22,7 @@
             <link rel="stylesheet" href="assets/css/slick.css">
             <link rel="stylesheet" href="assets/css/nice-select.css">
             <link rel="stylesheet" href="assets/css/style.css">
+            <link rel="stylesheet" href="assets/css/custom.css">
    </head>
 
    <body>
@@ -77,6 +78,34 @@
                                     <a href="{{ route('login') }}" class="btn head-btn2">Login</a>
                                 </div>
                                 @endguest
+
+                                @auth 
+
+                                <div class="btn-group user-dropdown">
+                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                        {{ Auth::user()->name }}
+                                    </a>
+                                    <div class="dropdown-menu dropdown-menu-right">
+                                        <a href="{{ route('profile.edit') }}" class="dropdown-item" type="button">Profile</a>
+                                        
+                                        @if(Auth::user()->user_type == 'employer')
+                                            <a href="#" class="dropdown-item" type="button">Jobs</a>
+                                        @else 
+                                            <a href="#" class="dropdown-item" type="button">Applications</a>
+                                        @endif
+                                        
+                                        <form method="POST" action="{{ route('logout') }}">
+                                            @csrf
+
+                                            <x-dropdown-link :href="route('logout')"
+                                                    onclick="event.preventDefault();
+                                                                this.closest('form').submit();">
+                                                {{ __('Log Out') }}
+                                            </x-dropdown-link>
+                                        </form>
+                                    </div>
+                                </div>
+                                @endauth
                             </div>
                         </div>
                         <!-- Mobile Menu -->
