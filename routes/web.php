@@ -5,6 +5,7 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Controllers\HomeController;
+use App\Http\Controllers\JobController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,6 +20,7 @@ use App\Http\Controllers\HomeController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
+Route::get('jobs', [JobController::class, 'index'])->name('index.jobs');
 
 
 Route::get('/dashboard', function () {
