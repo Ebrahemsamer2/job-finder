@@ -21,6 +21,7 @@ use App\Http\Controllers\JobController;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('jobs', [JobController::class, 'index'])->name('index.jobs');
+Route::get('load_jobs', [JobController::class, 'loadJobs']);
 
 
 Route::get('/dashboard', function () {

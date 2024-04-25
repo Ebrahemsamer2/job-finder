@@ -12,6 +12,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    private string $employer_default_image = 'assets/img/user/default-company.png';
+    private string $employee_default_image = 'assets/img/user/user-default.jpg';
+
     /**
      * The attributes that are mass assignable.
      *
@@ -44,6 +47,9 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 
+    public function getAvatar() {
+        return $this->avatar ?? ($this->user_type === 'employer' ? $this->employer_default_image : $this->employee_default_image);
+    }
 
     // Relations
     public function jobs()

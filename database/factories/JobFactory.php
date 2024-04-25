@@ -22,8 +22,10 @@ class JobFactory extends Factory
     protected $experience_needed = ['0 - 1', '1 - 2', '2 - 4', '3 - 6' , 'more than 6'];
     public function definition(): array
     {
+        $title = fake()->name() . ' ' . fake()->name();
         return [
-            'title' => fake()->name() . ' ' . fake()->name(),
+            'title' => $title,
+            'slug' => $this->generateSlug($title),
             'short_description' => fake()->paragraph(),
             'job_type' => $this->job_types[rand(0, count($this->job_types) - 1)],
             'country' => 'Egypt',
@@ -38,5 +40,10 @@ class JobFactory extends Factory
             'user_id' => User::where('user_type', 'employer')->inRandomOrder()->get()[0]->id,
             'category_id' => Category::inRandomOrder()->get()[0]->id,
         ];
+    }
+
+    private function generateSlug($title)
+    {   
+        return implode('-', explode(' ', strtolower($title)));;
     }
 }
