@@ -46,12 +46,11 @@
                                </div>
                                 <!-- Select job items start -->
                                 <div class="select-job-items2">
-                                    <select name="select">
-                                        <option value="">All Category</option>
-                                        <option value="">Category 1</option>
-                                        <option value="">Category 2</option>
-                                        <option value="">Category 3</option>
-                                        <option value="">Category 4</option>
+                                    <select name="category">
+                                        <option value="">All Categories</option>
+                                        @foreach($categories as $category)
+                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <!--  Select job items End-->
@@ -61,19 +60,19 @@
                                         <h4>Job Type</h4>
                                     </div>
                                     <label class="container">Full Time
-                                        <input type="checkbox" >
+                                        <input value="Full Time" name='job_type' type="checkbox" >
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container">Part Time
-                                        <input type="checkbox" checked="checked active">
+                                        <input value="Part Time" name='job_type' type="checkbox">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <label class="container">Remote
-                                        <input type="checkbox">
+                                    <label class="container">Remotly
+                                        <input value="Remotly" name='job_type' type="checkbox">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container">Freelance
-                                        <input type="checkbox">
+                                        <input value="Freelance" name='job_type' type="checkbox">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -86,12 +85,11 @@
                                </div>
                                 <!-- Select job items start -->
                                 <div class="select-job-items2">
-                                    <select name="select">
+                                    <select name="job_location">
                                         <option value="">Anywhere</option>
-                                        <option value="">Category 1</option>
-                                        <option value="">Category 2</option>
-                                        <option value="">Category 3</option>
-                                        <option value="">Category 4</option>
+                                        @foreach($jobLocations as $jobLocation)
+                                        <option value="{{ $jobLocation->country }} - {{ $jobLocation->city }}">{{ $jobLocation->country }} - {{ $jobLocation->city }} <span class='float-right'>( {{ $jobLocation->count }} )</span></option>
+                                        @endforeach
                                     </select>
                                 </div>
                                 <!--  Select job items End-->
@@ -101,19 +99,23 @@
                                         <h4>Experience</h4>
                                     </div>
                                     <label class="container">1-2 Years
-                                        <input type="checkbox" >
+                                        <input name='experience' value='1-2' type="checkbox" >
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container">2-3 Years
-                                        <input type="checkbox" checked="checked active">
+                                        <input name='experience' value='2-3' type="checkbox">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container">3-6 Years
-                                        <input type="checkbox">
+                                        <input name='experience' value='3-6' type="checkbox">
                                         <span class="checkmark"></span>
                                     </label>
-                                    <label class="container">6-more..
-                                        <input type="checkbox">
+                                    <label class="container">6-10
+                                        <input name='experience' value='6-10' type="checkbox">
+                                        <span class="checkmark"></span>
+                                    </label>
+                                    <label class="container">10-20
+                                        <input name='experience' value='10-20' type="checkbox">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -127,27 +129,27 @@
                                         <h4>Posted Within</h4>
                                     </div>
                                     <label class="container">Any
-                                        <input type="checkbox" >
+                                        <input value="any" name="posted-within" type="radio" checked="checked active">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container">Today
-                                        <input type="checkbox" checked="checked active">
+                                        <input value="today" name="posted-within" type="radio" >
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container">Last 2 days
-                                        <input type="checkbox">
+                                        <input value="last_2_days" name="posted-within" type="radio">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container">Last 3 days
-                                        <input type="checkbox">
+                                        <input value="last_3_days" name="posted-within" type="radio">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container">Last 5 days
-                                        <input type="checkbox">
+                                        <input value="last_5_days" name="posted-within" type="radio">
                                         <span class="checkmark"></span>
                                     </label>
                                     <label class="container">Last 10 days
-                                        <input type="checkbox">
+                                        <input value="last_10_days" name="posted-within" type="radio">
                                         <span class="checkmark"></span>
                                     </label>
                                 </div>
@@ -157,20 +159,20 @@
                                 <!-- Range Slider Start -->
                                 <aside class="left_widgets p_filter_widgets price_rangs_aside sidebar_box_shadow">
                                     <div class="small-section-tittle2">
-                                        <h4>Filter Jobs</h4>
+                                        <h4>Salary Range</h4>
                                     </div>
                                     <div class="widgets_inner">
                                         <div class="range_item">
                                             <!-- <div id="slider-range"></div> -->
-                                            <input type="text" class="js-range-slider" value="" />
+                                            <input type="text" class="salary-range-slider" value="" />
                                             <div class="d-flex align-items-center">
                                                 <div class="price_text">
-                                                    <p>Price :</p>
+                                                    <p>Salary :</p>
                                                 </div>
                                                 <div class="price_value d-flex justify-content-center">
-                                                    <input type="text" class="js-input-from" id="amount" readonly />
+                                                    <input type="text" class="salary-from" id="amount" readonly />
                                                     <span>to</span>
-                                                    <input type="text" class="js-input-to" id="amount" readonly />
+                                                    <input type="text" class="salary-to" id="amount" readonly />
                                                 </div>
                                             </div>
                                         </div>
