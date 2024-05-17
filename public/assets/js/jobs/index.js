@@ -132,10 +132,10 @@ let jobs = {
                 <div class="single-job-items mb-30">
                     <div class="job-items">
                         <div class="company-img">
-                            <a href="#"><img width='100' src="${job.user.avatar}" alt=""></a>
+                            <a href="jobs/${job.slug}"><img width='100' src="${job.user.avatar}" alt=""></a>
                         </div>
                         <div class="job-tittle job-tittle2">
-                            <a href="#">
+                            <a href="jobs/${job.slug}">
                                 <h4>${job.title}</h4>
                             </a>
                             <ul>

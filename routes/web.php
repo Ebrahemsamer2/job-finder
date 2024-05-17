@@ -4,6 +4,8 @@
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
+use App\Http\Middleware\checkIfAjax;
+
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
 /*
@@ -21,7 +23,7 @@ use App\Http\Controllers\JobController;
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::get('jobs', [JobController::class, 'index'])->name('index.jobs');
-Route::get('load_jobs', [JobController::class, 'loadJobs']);
+Route::get('load_jobs', [JobController::class, 'loadJobs'])->middleware(checkIfAjax::class);
 
 
 Route::get('/dashboard', function () {
