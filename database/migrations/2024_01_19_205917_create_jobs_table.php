@@ -18,7 +18,6 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug');
-            $table->text('short_description');
             $table->string('job_type');
             $table->string('country');
             $table->string('city');
@@ -26,8 +25,8 @@ return new class extends Migration
             $table->string('experience_needed');
             $table->integer('salary_range_from');
             $table->integer('salary_range_to');
-            $table->text('job_description');
-            $table->text('job_requirements');
+            $table->text('description');
+            $table->text('requirements');
             $table->text('skills');
             $table->foreignIdFor(Category::class);
             $table->foreignIdFor(User::class);

@@ -81,6 +81,18 @@ class Job extends Model
         ];
     }
 
+    public function formatSkills() {
+        return explode(';', $this->skills);
+    }
+
+    public function formatRequirements() {
+        return explode(';', $this->requirements);
+    }
+
+    public function getRouteKeyName() {
+        return 'slug';
+    }
+
     // Relations
     public function user()
     {

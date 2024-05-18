@@ -22,7 +22,7 @@ use App\Http\Controllers\JobController;
 
 
 Route::get('/', [HomeController::class, 'index'])->name('index');
-Route::get('jobs', [JobController::class, 'index'])->name('index.jobs');
+Route::resource('jobs', JobController::class);
 Route::get('load_jobs', [JobController::class, 'loadJobs'])->middleware(checkIfAjax::class);
 
 
