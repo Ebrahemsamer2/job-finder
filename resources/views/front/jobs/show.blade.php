@@ -89,9 +89,21 @@
                               <li>Job nature : <span>{{ $job['job_type'] }}</span></li>
                               <li>Salary :  <span>${{ $job['salary_range_from'] }} - ${{ $job['salary_range_to'] }} monthly</span></li>
                           </ul>
-                         <div class="apply-btn2">
-                            <a id="apply-now" href="#" class="btn">Apply Now</a>
-                         </div>
+                          
+                        <div class="apply-btn2">
+                            @auth
+                                @if(auth()->user()->applications->contains($job['id']))
+                                    <p class="text-success font-weight-bold">You are successfully applied for this job</p>
+                                @else
+                                    <a id="apply-now" href="#" class="btn">Apply Now</a>
+                                @endif
+                            @endauth 
+                            @guest
+                                <p class="text-danger text-bold">You need to <a class="text-primary" href="{{ route('login') }}">Login</a> to apply.</p>
+                            @endguest 
+                        </div>
+                        
+                         
                        </div>
                         <div class="post-details4  mb-50">
                             <!-- Small Section Tittle -->
@@ -115,5 +127,8 @@
 @endsection
 
 @section('scripts')
-    <script src="assets/js/jobs/job.js"></script>
+    <script src="{{ asset('assets/js/jobs/job-manager.js') }}"></script>
+    <script>
+        job.slug = "<?php echo $job['slug']; ?>";
+    </script>
 @endsection

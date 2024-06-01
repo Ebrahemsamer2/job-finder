@@ -62,4 +62,8 @@ class User extends Authenticatable
         return $this->hasMany(Post::class);
     }
 
+    public function applications() {
+        return $this->belongsToMany(Job::class, 'job_applications')->withTimestamps();
+    }
+
 }

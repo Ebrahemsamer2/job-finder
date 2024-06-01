@@ -31,4 +31,24 @@ class JobController extends Controller
     public function loadJobs(Request $request){
         return Job::loadJobs($request);
     }
+
+    public function apply(Request $request) {
+        $user = auth()->user();
+        $job = Job::where('slug', $request->input('slug'))->first();
+        
+
+        if($user->applications->contains($job)) {
+            return response()->json([
+                'success' => 0,
+                'message' => 'You already applied for this job'
+            ]);
+        }
+
+        $user->applications()->attach($job);
+
+        return response()->json([
+            'success' => 1,
+            'message' => 'You are successfully applied for this job'
+        ]);
+    }
 }

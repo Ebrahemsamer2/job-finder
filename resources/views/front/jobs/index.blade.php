@@ -213,5 +213,5 @@
 @endsection
 
 @section('scripts')
-    <script src="assets/js/jobs/index.js"></script>
+    <script src="{{ asset('assets/js/jobs/jobs-manager.js') }}"></script>
 @endsection
