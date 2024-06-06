@@ -12,6 +12,9 @@ class User extends Authenticatable
 {
     use HasApiTokens, HasFactory, Notifiable;
 
+    CONST EMPLOYEE = 'employee';
+    CONST EMPLOYER = 'employer';
+
     private string $employer_default_image = 'assets/img/user/default-company.png';
     private string $employee_default_image = 'assets/img/user/user-default.jpg';
 

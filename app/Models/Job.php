@@ -13,13 +13,6 @@ class Job extends Model
 {
     use HasFactory;
 
-    CONST APPLIED = 0;
-    CONST VIEWED = 1;
-    CONST SHORTLISTED = 2;
-    CONST CONTACTED = 3;
-    CONST ACCEPTED = 4;
-    CONST REJECTED = -1;
-
     public static function featuredJobs(int $limit)
     {
         return self::latest()->take($limit)->get();

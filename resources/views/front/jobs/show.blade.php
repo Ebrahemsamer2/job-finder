@@ -95,7 +95,11 @@
                                 @if(auth()->user()->applications->contains($job['id']))
                                     <p class="text-success font-weight-bold">You are successfully applied for this job</p>
                                 @else
-                                    <a id="apply-now" href="#" class="btn">Apply Now</a>
+                                    @if( auth()->user()->user_type == 'employee' )
+                                        <a id="apply-now" href="#" class="btn">Apply Now</a>
+                                    @else 
+                                        <p class="text-danger text-bold">Only employees can apply for jobs.</p>
+                                    @endif
                                 @endif
                             @endauth 
                             @guest

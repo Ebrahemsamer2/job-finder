@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\JobResource;
 
 use App\Models\Job;
+use App\Models\User;
 use App\Models\Category;
 
 use Illuminate\Support\Facades\DB;
@@ -34,9 +35,14 @@ class JobController extends Controller
 
     public function apply(Request $request) {
         $user = auth()->user();
+        if($user->user_type === User::EMPLOYER) {
+            return response()->json([
+                'success' => 0,
+                'message' => 'Only employees can apply for jobs.'
+            ]);
+        }
         $job = Job::where('slug', $request->input('slug'))->first();
         
-
         if($user->applications->contains($job)) {
             return response()->json([
                 'success' => 0,

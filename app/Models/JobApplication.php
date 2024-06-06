@@ -9,6 +9,13 @@ class JobApplication extends Model
 {
     use HasFactory;
 
+    CONST APPLIED = 0;
+    CONST VIEWED = 1;
+    CONST SHORTLISTED = 2;
+    CONST CONTACTED = 3;
+    CONST ACCEPTED = 4;
+    CONST REJECTED = -1;
+    
     protected $table = 'job_applications';
 
     public function user() {
