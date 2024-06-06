@@ -11,3 +11,21 @@
 .single-job-items .job-tittle ul li {
     margin-right: 40px;
 }
+
+.notification {
+    width: 30%;
+    background: #242B5E;
+    padding: 20px;
+    position: fixed;
+    bottom: 30px;
+    left: 30px;
+    border-radius: 50px;
+    margin: auto;
+    color: #fff;
+    font-weight: bold;
+    text-align: center;
+    font-size: 18px;
+}
+.notification.fail {
+    background: #FA236A;
+}

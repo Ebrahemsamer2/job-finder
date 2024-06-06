@@ -21,12 +21,15 @@ let job = {
                 data: data,
                 success: (response) => {
                     let message = response.message;
-                    if(response.success) {
-                        let html = `
-                            <p class="text-success font-weight-bold">${message}</p>
-                        `;
-                        $(".apply-btn2").html(html);
+                    if(!response.success) {
+                        NotificationManager.showMessage(message, response.success);
+                        return;
                     }
+                    let html = `
+                        <p class="text-success font-weight-bold">${message}</p>
+                    `;
+                    $(".apply-btn2").html(html);
+                    NotificationManager.showMessage(message, 0);
                 },
                 error: (err) => {
                     console.log(err);
