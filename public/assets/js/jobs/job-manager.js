@@ -12,7 +12,7 @@ let job = {
             data.token = token;
             data.slug = slug;
             $.ajax({
-                url: '/apply',
+                url: '/applications',
                 type: 'POST',
                 headers: {
                     'X-CSRF-Token': token,
@@ -29,7 +29,7 @@ let job = {
                         <p class="text-success font-weight-bold">${message}</p>
                     `;
                     $(".apply-btn2").html(html);
-                    NotificationManager.showMessage(message, 0);
+                    NotificationManager.showMessage(message, response.success);
                 },
                 error: (err) => {
                     console.log(err);

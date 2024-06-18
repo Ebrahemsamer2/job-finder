@@ -9,14 +9,21 @@ class JobApplication extends Model
 {
     use HasFactory;
 
-    CONST APPLIED = 0;
-    CONST VIEWED = 1;
-    CONST SHORTLISTED = 2;
-    CONST CONTACTED = 3;
-    CONST ACCEPTED = 4;
-    CONST REJECTED = -1;
+    CONST statuses = [
+        '0' => 'APPLIED',
+        '1' => 'VIEWED',
+        '2' => 'SHORTLISTED',
+        '5' => 'CONTACTED',
+        '4' => 'ACCEPTED',
+        '-1' => 'REJECTED'
+    ];
     
     protected $table = 'job_applications';
+
+    public function getStatus()
+    {
+        return self::statuses[$this->status];
+    }
 
     public function user() {
         return $this->belongsTo(User::class);

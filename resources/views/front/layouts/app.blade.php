@@ -92,7 +92,7 @@
                                         @if(Auth::user()->user_type == 'employer')
                                             <a href="#" class="dropdown-item" type="button">Jobs</a>
                                         @else 
-                                            <a href="#" class="dropdown-item" type="button">Applications</a>
+                                            <a href="{{ route('applications.index') }}" class="dropdown-item" type="button">Applications</a>
                                         @endif
                                         
                                         <form method="POST" action="{{ route('logout') }}">

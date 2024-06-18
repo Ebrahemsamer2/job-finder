@@ -1,3 +1,10 @@
+.main-red-color {
+    color: #FA236A;
+}
+
+.main-blue-color {
+    color: #242B5E;
+}
 
 
 .menu-wrapper .user-dropdown a {
@@ -10,6 +17,14 @@
 
 .single-job-items .job-tittle ul li {
     margin-right: 40px;
+}
+
+
+/* Pagination style */
+
+.page-item.active .page-link {
+    background-color: #FA236A;
+    border-color: #FA236A;
 }
 
 .notification {

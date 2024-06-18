@@ -47,7 +47,7 @@
                                 {{ __('Jobs') }}
                             </x-dropdown-link>
                         @else 
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('applications.index')">
                                 {{ __('Applications') }}
                             </x-dropdown-link>
                         @endif
