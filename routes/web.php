@@ -37,6 +37,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
     Route::resource('applications', JobApplicationController::class);
+
+    Route::get('employer-jobs', [JobController::class, 'loadEmployerJobs'])->name('jobs.employerjobs');
 });
 
 require __DIR__.'/auth.php';

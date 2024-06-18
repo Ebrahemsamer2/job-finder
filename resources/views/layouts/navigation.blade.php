@@ -43,7 +43,7 @@
                         </x-dropdown-link>
 
                         @if(Auth::user()->user_type == 'employer')
-                            <x-dropdown-link :href="route('profile.edit')">
+                            <x-dropdown-link :href="route('jobs.employerjobs')">
                                 {{ __('Jobs') }}
                             </x-dropdown-link>
                         @else 

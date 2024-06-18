@@ -8,7 +8,7 @@
                     <div class="row">
                         <div class="col-xl-12">
                             <div class="hero-cap text-center">
-                                <h2>Your job applications</h2>
+                                <h2>Your jobs</h2>
                             </div>
                         </div>
                     </div>
@@ -18,38 +18,39 @@
         <!-- Hero Area End -->
         <!-- Job List Area Start -->
         <div class="job-listing-area pt-120 pb-120">
-            <div class="container-fluid">
+            <div class="container">
                 <div class="row">
                     
                     <div class="col-xl-12 col-lg-12 col-md-12">
                         <!-- Featured_job_start -->
                         <section class="featured-job-area">
                             <div class="jobs-items-container mb-30">
-                                <div class="container-fluid">
+                                <div class="container">
                                     <div class="row">
                                 
-                                        @foreach($applications as $application)
+                                        @foreach($jobs as $job)
 
-                                        <div class="col-xl-6 col-lg-6 col-md-6">
+                                        <div class="col-12">
                                             <div class="single-job-items mb-30">
 
                                                 <div class="job-items">
                                                     <div class="company-img">
-                                                        <a href="jobs/{{$application->job->slug}}"><img width='100' src="{{ $application->job->user->getAvatar() }}" alt=""></a>
+                                                        <a href="jobs/{{$job->slug}}"><img width='100' src="{{ $job->user->getAvatar() }}" alt=""></a>
                                                     </div>
                                                     <div class="job-tittle job-tittle2">
-                                                        <a href="jobs/{{$application->job->slug}}">
-                                                            <h4>{{ $application->job->title }}</h4>
+                                                        <a href="jobs/{{$job->slug}}">
+                                                            <h4>{{ $job->title }}</h4>
                                                         </a>
                                                         <ul>
-                                                            <li>{{ $application->job->user->name }}</li>
-                                                            <li><i class="fas fa-map-marker-alt"></i>{{ $application->job->city }}, {{ $application->job->country }}</li>
+                                                            <li>{{ $job->user->name }}</li>
+                                                            <li><i class="fas fa-map-marker-alt"></i>{{ $job->city }}, {{ $job->country }}</li>
+                                                            <li>${{ $job->salary_range_from }} - ${{ $job->salary_range_to }}</li>
                                                         </ul>
                                                     </div>
                                                 </div>
                                                 <div class="items-link items-link2 f-right">
-                                                    <span class="font-weight-bold {{ $application->status < 0 ? 'text-danger' : ''}} {{ $application->status > 0 ? 'text-success' : ''}}">{{ $application->getStatus() }}</span>
-                                                    <span>{{ $application->created_at->diffForHumans() }}</span>
+                                                    <a href="#" class="font-weight-bold">{{ $job->job_type }}</a>
+                                                    <span>{{ $job->created_at->diffForHumans() }}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -61,9 +62,9 @@
                         </section>
                         <!-- Featured_job_end -->
 
-                        @if($applications->count())
-                        <div class='applications-pagination'>
-                        {{ $applications->links() }}
+                        @if($jobs->count())
+                        <div class='jobs-pagination'>
+                        {{ $jobs->links() }}
                         </div>
                         @endif
                     </div>

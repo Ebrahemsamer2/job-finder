@@ -90,7 +90,7 @@
                                         <a href="{{ route('profile.edit') }}" class="dropdown-item" type="button">Profile</a>
                                         
                                         @if(Auth::user()->user_type == 'employer')
-                                            <a href="#" class="dropdown-item" type="button">Jobs</a>
+                                            <a href="{{ route('jobs.employerjobs') }}" class="dropdown-item" type="button">Jobs</a>
                                         @else 
                                             <a href="{{ route('applications.index') }}" class="dropdown-item" type="button">Applications</a>
                                         @endif
