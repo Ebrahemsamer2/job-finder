@@ -6,6 +6,9 @@
     color: #242B5E;
 }
 
+a.main-blue-color:hover {
+    color: #32354f;
+}
 
 .menu-wrapper .user-dropdown a {
     color: #252b60;

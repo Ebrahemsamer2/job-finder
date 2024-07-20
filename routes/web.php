@@ -5,6 +5,8 @@ use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
 
 use App\Http\Middleware\checkIfAjax;
+use App\Http\Middleware\OnlyEmployee;
+use App\Http\Middleware\OnlyEmployer;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
@@ -36,9 +38,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
-    Route::resource('applications', JobApplicationController::class);
-
-    Route::get('employer-jobs', [JobController::class, 'loadEmployerJobs'])->name('jobs.employerjobs');
+    Route::resource('applications', JobApplicationController::class)->only(['index', 'store'])->middleware(OnlyEmployee::class);
+    
+    Route::get('employer-jobs/{job}/applications', [JobApplicationController::class, 'loadEmployerJobApplications'])->middleware(OnlyEmployer::class)->name('applications.jobapplications');
+    Route::get('employer-jobs', [JobController::class, 'loadEmployerJobs'])->middleware(OnlyEmployer::class)->name('jobs.employerjobs');
 });
 
 require __DIR__.'/auth.php';

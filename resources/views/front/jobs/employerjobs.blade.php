@@ -3,7 +3,7 @@
 @section('main')
         <!-- Hero Area Start-->
         <div class="slider-area ">
-            <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="assets/img/hero/about.jpg">
+            <div class="single-slider section-overly slider-height2 d-flex align-items-center" data-background="{{ asset('assets/img/hero/about.jpg') }}">
                 <div class="container">
                     <div class="row">
                         <div class="col-xl-12">
@@ -35,16 +35,16 @@
 
                                                 <div class="job-items">
                                                     <div class="company-img">
-                                                        <a href="jobs/{{$job->slug}}"><img width='100' src="{{ $job->user->getAvatar() }}" alt=""></a>
+                                                        <a href="{{ route('jobs.show', $job->slug) }}"><img width='100' src="{{ $job->user->getAvatar() }}" alt=""></a>
                                                     </div>
                                                     <div class="job-tittle job-tittle2">
-                                                        <a href="jobs/{{$job->slug}}">
+                                                        <a href="{{ route('jobs.show', $job->slug) }}">
                                                             <h4>{{ $job->title }}</h4>
                                                         </a>
                                                         <ul>
-                                                            <li>{{ $job->user->name }}</li>
                                                             <li><i class="fas fa-map-marker-alt"></i>{{ $job->city }}, {{ $job->country }}</li>
                                                             <li>${{ $job->salary_range_from }} - ${{ $job->salary_range_to }}</li>
+                                                            <li><a href="{{ route('applications.jobapplications', $job->slug) }}" class="main-blue-color font-weight-bold">Applications</a></li>
                                                         </ul>
                                                     </div>
                                                 </div>

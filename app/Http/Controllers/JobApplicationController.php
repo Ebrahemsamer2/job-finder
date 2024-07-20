@@ -16,18 +16,19 @@ class JobApplicationController extends Controller
      */
     public function index()
     {
-        $applications = JobApplication::with('job')->orderBy('updated_at')->paginate(20);
+        $applications = JobApplication::with('job')->where('user_id', auth()->user()->id)->orderBy('updated_at')->paginate(20);
         return view('front.applications.index', [
             'applications' => $applications,
         ]);
     }
-
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
+    
+    public function loadEmployerJobApplications(Job $job)
+    {   
+        $applications = $job->applicants()->withPivot('status')->paginate(20);
+        return view('front.applications.jobapplications', [
+            'applications' => $applications,
+            'job' => $job,
+        ]);
     }
 
     /**
@@ -57,37 +58,5 @@ class JobApplicationController extends Controller
             'success' => 1,
             'message' => 'You are successfully applied for this job'
         ]);
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
     }
 }

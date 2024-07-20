@@ -35,7 +35,7 @@ class JobController extends Controller
 
     public function loadEmployerJobs() {
         return view('front.jobs.employerjobs', [
-            'jobs' => Job::latest()->where('user_id', auth()->user()->id)->paginate(2),
+            'jobs' => Job::latest()->where('user_id', auth()->user()->id)->paginate(20),
         ]);
     }
 }

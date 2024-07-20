@@ -116,10 +116,10 @@
                     <div class="single-job-items mb-30">
                         <div class="job-items">
                             <div class="company-img">
-                                <a href="job_details.html"><img src="assets/img/icon/job-list1.png" alt=""></a>
+                                <a href="{{ route('jobs.show', $job->slug) }}"><img width="100" src="{{ $job->user->getAvatar() }}" alt=""></a>
                             </div>
                             <div class="job-tittle">
-                                <a href="job_details.html"><h4>{{ $job->title }}</h4></a>
+                                <a href="{{ route('jobs.show', $job->slug) }}"><h4>{{ $job->title }}</h4></a>
                                 <ul>
                                     <li>{{ $job->user->name }}</li>
                                     <li><i class="fas fa-map-marker-alt"></i>{{ $job->city }}, {{ $job->country }}</li>

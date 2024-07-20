@@ -104,7 +104,7 @@ class Job extends Model
         return $this->belongsTo(Category::class);
     }
 
-    public function applications() {
-        return $this->belongsToMany(User::class, 'job_applications')->withTimestamps();
+    public function applicants() {
+        return $this->belongsToMany(User::class, 'job_applications')->using(JobApplication::class)->withTimestamps();
     }
 }
