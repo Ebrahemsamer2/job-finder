@@ -42,6 +42,10 @@
                             {{ __('Profile') }}
                         </x-dropdown-link>
 
+                        <x-dropdown-link :href="route('profile.edit_personal_info')">
+                            {{ __('Personal Info') }}
+                        </x-dropdown-link>
+
                         @if(Auth::user()->user_type == 'employer')
                             <x-dropdown-link :href="route('jobs.employerjobs')">
                                 {{ __('Jobs') }}
@@ -100,6 +104,10 @@
             <div class="mt-3 space-y-1">
                 <x-responsive-nav-link :href="route('profile.edit')">
                     {{ __('Profile') }}
+                </x-responsive-nav-link>
+
+                <x-responsive-nav-link :href="route('profile.edit_personal_info')">
+                    {{ __('Personal Info') }}
                 </x-responsive-nav-link>
 
                 <!-- Authentication -->

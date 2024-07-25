@@ -87,7 +87,8 @@
                                         {{ Auth::user()->name }}
                                     </a>
                                     <div class="dropdown-menu dropdown-menu-right">
-                                        <a href="{{ route('profile.edit') }}" class="dropdown-item" type="button">Profile</a>
+                                    <a href="{{ route('profile.edit') }}" class="dropdown-item" type="button">Profile</a>
+                                    <a href="{{ route('profile.edit_personal_info') }}" class="dropdown-item" type="button">Personal Info</a>
                                         
                                         @if(Auth::user()->user_type == 'employer')
                                             <a href="{{ route('jobs.employerjobs') }}" class="dropdown-item" type="button">Jobs</a>

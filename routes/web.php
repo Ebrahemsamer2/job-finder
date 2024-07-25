@@ -38,6 +38,10 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 
+    Route::get('/personal-info', [ProfileController::class, 'editPersonalInfo'])->name('profile.edit_personal_info');
+    Route::patch('/update-resume', [ProfileController::class, 'updateResume'])->name('profile.update_resume');
+    Route::post('/download-resume', [ProfileController::class, 'downloadResume'])->name('profile.download_resume');
+
     Route::resource('applications', JobApplicationController::class)->only(['index', 'store'])->middleware(OnlyEmployee::class);
     
     Route::get('employer-jobs/{job}/applications', [JobApplicationController::class, 'loadEmployerJobApplications'])->middleware(OnlyEmployer::class)->name('applications.jobapplications');
