@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ProfileUpdateRequest;
+use App\Http\Requests\AboutMeRequest;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -72,6 +73,14 @@ class ProfileController extends Controller
             abort(404, 'File does not exist.');
         }
         return response()->download($resume_path);
+    }
+
+    public function updateAboutMeInfo(AboutMeRequest $request) {
+        $request->user()->fill($request->validated());
+
+        $request->user()->save();
+
+        return Redirect::route('profile.edit_personal_info')->with('status', 'profile-updated');
     }
 
     /**

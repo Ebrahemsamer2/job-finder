@@ -40,6 +40,7 @@ Route::middleware('auth')->group(function () {
 
     Route::get('/personal-info', [ProfileController::class, 'editPersonalInfo'])->name('profile.edit_personal_info');
     Route::patch('/update-resume', [ProfileController::class, 'updateResume'])->name('profile.update_resume');
+    Route::patch('/update-about-me-info', [ProfileController::class, 'updateAboutMeInfo'])->name('profile.update_about_me_info');
     Route::post('/download-resume', [ProfileController::class, 'downloadResume'])->name('profile.download_resume');
 
     Route::resource('applications', JobApplicationController::class)->only(['index', 'store'])->middleware(OnlyEmployee::class);
