@@ -47,10 +47,11 @@ class ProfileController extends Controller
         return Redirect::route('profile.edit')->with('status', 'profile-updated');
     }
 
-    public function updateResume(Request $request): RedirectResponse
+    public function updateUserFile(Request $request): RedirectResponse
     {
         $request->validate([
-            'resume' => 'required|file|mimes:pdf,doc,docx|max:15000'
+            'resume' => 'file|mimes:pdf,doc,docx|max:15000',
+            'avatar' => 'file|mimes:png,jpg,jpeg,gif|max:2048'
         ]);
 
         if($request->hasFile('resume')) {
@@ -60,6 +61,15 @@ class ProfileController extends Controller
                 'resume' => $fileName
             ]);
         }
+
+        if($request->hasFile('avatar')) {
+            $resume_file = $request->file('avatar');
+            $resume_file_path = $resume_file->store('users_avatars', 'public');
+            $request->user()->update([
+                'avatar' => $resume_file_path
+            ]);
+        }
+
         return Redirect::route('profile.edit_personal_info')->with('status', 'profile-updated');
     }
 

@@ -55,7 +55,7 @@ class User extends Authenticatable
     ];
 
     public function getAvatar() {
-        return $this->avatar ?? ($this->user_type === 'employer' ? asset($this->employer_default_image) : asset($this->employee_default_image));
+        return $this->avatar ? asset('storage/' . $this->avatar) : ($this->user_type === 'employer' ? asset($this->employer_default_image) : asset($this->employee_default_image));
     }
 
     // Relations
