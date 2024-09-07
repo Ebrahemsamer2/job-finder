@@ -27,8 +27,10 @@ class PostFactory extends Factory
     public function definition(): array
     {
         $title = fake()->sentence();
+        $excerpt = fake()->sentence() . ' ' . fake()->sentence();
         return [
             'title' => $title,
+            'excerpt' => $excerpt,
             'slug' => $this->generateSlug($title),
             'body' => fake()->text(1500),
             'thumbnail' => "assets/img/blog/" . $this->thumbnails[rand(0, 1)],

@@ -10,6 +10,7 @@ use App\Http\Middleware\OnlyEmployer;
 
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\JobController;
+use App\Http\Controllers\PostController;
 use App\Http\Controllers\JobApplicationController;
 /*
 |--------------------------------------------------------------------------
@@ -28,6 +29,7 @@ Route::get('/', [HomeController::class, 'index'])->name('index');
 Route::resource('jobs', JobController::class);
 Route::get('load_jobs', [JobController::class, 'loadJobs'])->middleware(checkIfAjax::class);
 
+Route::resource('posts', PostController::class);
 
 Route::get('/dashboard', function () {
     return view('dashboard');
