@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
 use App\Models\Post;
+use App\Models\BlogCategory;
 
 class PostController extends Controller
 {
@@ -14,9 +15,13 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::orderBy('id', 'DESC')->paginate(5);
+        $posts = Post::filterPosts(5);
+        $blog_categories = BlogCategory::topCategories(8);
+        $recent_posts = Post::latestPosts(4);
         return view('front.posts.index', [
-            'posts' => $posts
+            'posts' => $posts,
+            'blog_categories' => $blog_categories,
+            'recent_posts' => $recent_posts
         ]);
     }
 
@@ -39,9 +44,11 @@ class PostController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id)
+    public function show(string $slug)
     {
-        //
+        return view('front.posts.show', [
+            'post' => Post::where('slug', $slug)
+        ]);
     }
 
     /**

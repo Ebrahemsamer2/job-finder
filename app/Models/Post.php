@@ -14,6 +14,23 @@ class Post extends Model
         return self::latest()->take($limit)->get();
     }
 
+    public static function filterPosts(int $limit)
+    {
+        $posts = Post::with('user')->latest('id');
+        $search = request()->input('search');
+        if($search) {
+            $posts = $posts->where('title', 'like', '%' . $search . '%')
+                            ->orWhere('excerpt', 'like', '%' . $search . '%');
+        }
+        $author = request()->input('author');
+        if($author) {
+            $posts = $posts->whereHas('user', function($query) use($author){
+                $query->where('name', $author);
+            });
+        }
+        return $posts->paginate($limit);
+    }
+
     // Relations
     public function user()
     {
